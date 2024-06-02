@@ -1,12 +1,17 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "21009";
-$dbname = "TCC";
+$servername = "localhost";  // Nome do servidor
+$username = "root";   // Usuário do banco de dados
+$password = "21009";     // Senha do banco de dados
+$dbname = "TCC"; // Nome do banco de dados
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if(!$conn){
-    die("Sem sucesso...". mysqli_connect_error());
+try {
+    // Tenta criar uma nova conexão PDO
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    // Configura o PDO para lançar exceções em caso de erro
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e) {
+    // Exibe uma mensagem de erro caso a conexão falhe
+    echo "Connection failed: " . $e->getMessage();
+    die();  // Encerra o script em caso de falha na conexão
 }
 ?>
