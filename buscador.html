@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Buscador</title>
+    <script>
+        function buscar(event) {
+            event.preventDefault(); // Previne o envio do formulário padrão
+            const query = document.getElementById('query').value;
+            fetch('buscador.php?query=' + encodeURIComponent(query))
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    const resultadosDiv = document.getElementById('resultados');
+                    resultadosDiv.innerHTML = '';
+
+                    if (data.resultados.length > 0) {
+                        const ul = document.createElement('ul');
+
+                        data.resultados.forEach(equipamento => {
+                            const li = document.createElement('li');
+                            li.innerHTML = `
+                                <h3>${equipamento.Cliente_CPF}</h3>
+                                <h3>${equipamento.Funcionario_Matricula}</h3>
+                                <p>${equipamento.IP}</p>
+                                <p>${equipamento.Mac}</p>
+                                <p>${equipamento.Tipo}</p>
+                                <p>${equipamento.Descricao}</p>
+                            `;
+                            ul.appendChild(li);
+                        });
+
+                        resultadosDiv.appendChild(ul);
+                    } else {
+                        resultadosDiv.innerHTML = `<p>Nenhum resultado encontrado para "${data.query}"</p>`;
+                    }
+                })
+                .catch(error => {
+                    const resultadosDiv = document.getElementById('resultados');
+                    resultadosDiv.innerHTML = `<p>Erro na busca: ${error.message}</p>`;
+                });
+        }
+    </script>
+</head>
+<body>
+    <h1>Buscador de Equipamentos</h1>
+    <form onsubmit="buscar(event);">
+        <input type="text" id="query" placeholder="Digite a palavra-chave para buscar" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <h2>Resultados da Busca</h2>
+    <div id="resultados"></div>
+</body>
+</html>

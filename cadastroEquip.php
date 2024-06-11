@@ -1,5 +1,5 @@
 <?php
-include 'conexão.php';
+include 'conexao.php';
 
 // Função para inserir um novo equipamento na tabela equipamentos associado a um cliente
 function inserirEquipamentoCliente($IP, $mac, $tipo, $descrição, $cpf, $conn){
@@ -15,7 +15,7 @@ function inserirEquipamentoCliente($IP, $mac, $tipo, $descrição, $cpf, $conn){
 // Função para inserir um novo equipamento na tabela equipamentos associado a um funcionário
 function inserirEquipamentoFuncionario($IP, $mac, $tipo, $descrição, $matricula, $conn){
     $sql = "INSERT INTO Equipamentos(IP, Mac, Tipo, Descrição, Funcionario_Matricula) VALUES ('$IP', '$mac', '$tipo', '$descrição', '$matricula')";
-    if(mysqli_query($conn, $sql)){
+    if(mysqli_query($conn,      $sql)){
         return mysqli_insert_id($conn); // Retorna o ID do equipamento inserido.
     } else{
         echo "Erro ao cadastrar o equipamento: " . mysqli_error($conn);
