@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Suspensa com Select2 e PHP/MySQL</title>
+    <!-- Incluir CSS do Select2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+</head>
+<body>
+    <h1>Lista Suspensa</h1>
+    
+    <select id="categorias" style="width: 300px;">
+        <option value="">Selecione um equipamento</option>
+    </select>
+
+    <!-- Incluir jQuery (necessário para o Select2) e Select2 JS -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+    <script>
+        // Quando o documento estiver pronto
+        $(document).ready(function() {
+            // Inicializar o Select2 na lista suspensa
+            $('#categorias').select2();
+
+            // Requisição AJAX para buscar categorias do arquivo PHP
+            $.ajax({
+                url: 'lista.php',
+                dataType: 'json',
+                success: function(data) {
+                    // Iterar sobre os dados retornados e adicionar opções à lista suspensa
+                    $.each(data, function(index, item) {
+                        $('#categorias').append('<option value="' + item.IP + '">' + item.Tipo + '</option>');
+                    });
+
+                    // Atualizar o Select2 para refletir as novas opções adicionadas dinamicamente
+                    $('#categorias').trigger('change');
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Erro ao carregar categorias: ' + textStatus, errorThrown);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
