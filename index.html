@@ -13,6 +13,11 @@
         <option value="">Selecione um equipamento</option>
     </select>
 
+    <!-- Elemento onde o iframe será exibido -->
+    <div id="iframe-container" style="margin-top: 20px;">
+        <iframe id="iframe-display" width="450" height="200" frameborder="0"></iframe>
+    </div>
+
     <!-- Incluir jQuery (necessário para o Select2) e Select2 JS -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
@@ -30,7 +35,7 @@
                 success: function(data) {
                     // Iterar sobre os dados retornados e adicionar opções à lista suspensa
                     $.each(data, function(index, item) {
-                        $('#categorias').append('<option value="' + item.IP + '">' + item.Tipo + '</option>');
+                        $('#categorias').append('<option value="' + item.link + '">' + item.Tipo + " " + item.IP + '</option>');
                     });
 
                     // Atualizar o Select2 para refletir as novas opções adicionadas dinamicamente
@@ -38,6 +43,19 @@
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
                     console.error('Erro ao carregar categorias: ' + textStatus, errorThrown);
+                }
+            });
+
+            // Adicionar função para exibir o iframe
+            $('#categorias').on('change', function() {
+                var selectedValue = $(this).val();
+                var iframeDisplay = $('#iframe-display');
+
+                if (selectedValue) {
+                    var iframeContent = '<iframe src="' + selectedValue + '" width="450" height="200" frameborder="0"></iframe>';
+                    iframeDisplay.attr('src', selectedValue);
+                } else {
+                    iframeDisplay.attr('src', '');
                 }
             });
         });

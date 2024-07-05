@@ -3,7 +3,7 @@
 require_once 'conexao.php';
 
 // Consulta SQL para obter as categorias
-$sql = "SELECT IP, Tipo FROM equipamentos";
+$sql = "SELECT Tipo, IP, link FROM equipamentos";
 $resultado = $conn->query($sql);
 
 $categorias = array();
