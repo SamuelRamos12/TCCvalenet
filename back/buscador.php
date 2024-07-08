@@ -9,7 +9,7 @@ if (isset($_GET['query'])) {  // Verifica se a palavra-chave foi enviada
     $query = $_GET['query'];  // Obtém a palavra-chave da URL
 
     // Prepara a consulta SQL para buscar registros que contenham a palavra-chave
-    $stmt = $conn->prepare("SELECT * FROM equipamentos WHERE Cliente_CPF LIKE ? OR Funcionario_Matricula LIKE ? OR Descrição LIKE ? OR Tipo LIKE ? OR Mac LIKE ? OR IP LIKE ?");
+    $stmt = $conn->prepare("SELECT * FROM equipamentos WHERE Cliente_CPF LIKE ? OR Funcionario_Matricula LIKE ? OR Descricao LIKE ? OR Tipo LIKE ? OR Mac LIKE ? OR IP LIKE ?");
     
     if ($stmt === false) {
         die("Erro na preparação da consulta: " . $conn->error);
