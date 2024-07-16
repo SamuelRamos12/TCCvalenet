@@ -8,18 +8,24 @@ $query = "";
 if (isset($_GET['query'])) {  // Verifica se a palavra-chave foi enviada
     $query = $_GET['query'];  // Obtém a palavra-chave da URL
 
-    // Prepara a consulta SQL para buscar registros que contenham a palavra-chave
-    $stmt = $conn->prepare("SELECT * FROM equipamentos WHERE Cliente_CPF LIKE ? OR Funcionario_Matricula LIKE ? OR Descricao LIKE ? OR Tipo LIKE ? OR Mac LIKE ? OR IP LIKE ?");
+    // Define a consulta SQL baseada no tipo de query
+    if (preg_match('/^\d{11}$/', $query)) {
+        // Query parece um CPF (11 dígitos)
+        $stmt = $conn->prepare("SELECT * FROM equipamentos WHERE Cliente_CPF = ?");
+    } elseif (preg_match('/^\d+$/', $query)) {
+        // Query parece uma matrícula (somente dígitos)
+        $stmt = $conn->prepare("SELECT * FROM equipamentos WHERE Funcionario_Matricula = ?");
+    } else {
+        // Assume que a query é o tipo de equipamento
+        $stmt = $conn->prepare("SELECT * FROM equipamentos WHERE Tipo = ?");
+    }
     
     if ($stmt === false) {
         die("Erro na preparação da consulta: " . $conn->error);
     }
     
-    // Prepara a palavra-chave com os caracteres curinga
-    $likeQuery = "%$query%";
-    
-    // Vincula a palavra-chave a todos os parâmetros da consulta
-    if (!$stmt->bind_param("ssssss", $likeQuery, $likeQuery, $likeQuery, $likeQuery, $likeQuery, $likeQuery)) {
+    // Vincula a palavra-chave ao parâmetro da consulta
+    if (!$stmt->bind_param("s", $query)) {
         die("Erro na vinculação dos parâmetros: " . $stmt->error);
     }
     

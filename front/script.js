@@ -117,24 +117,19 @@ function buscar(event) {
             resultadosDiv.innerHTML = '';
 
             if (data.resultados.length > 0) {
-                const select = document.createElement('select');
-                select.id = 'resultadoSelecionado';
-                select.onchange = mostrarDetalhes;
-
-                const defaultOption = document.createElement('option');
-                defaultOption.textContent = 'Selecione um equipamento';
-                defaultOption.disabled = true;
-                defaultOption.selected = true;
-                select.appendChild(defaultOption);
-
                 data.resultados.forEach(equipamento => {
-                    const option = document.createElement('option');
-                    option.value = JSON.stringify(equipamento); // Armazena os dados completos do equipamento
-                    option.textContent = `${equipamento.Cliente_CPF} - ${equipamento.Funcionario_Matricula}`;
-                    select.appendChild(option);
+                    const equipamentoDiv = document.createElement('div');
+                    equipamentoDiv.innerHTML = `
+                        <h3>Cliente CPF: ${equipamento.Cliente_CPF}</h3>
+                        <h3>Funcionário Matrícula: ${equipamento.Funcionario_Matricula}</h3>
+                        <p>IP: ${equipamento.IP}</p>
+                        <p>Mac: ${equipamento.Mac}</p>
+                        <p>Tipo: ${equipamento.Tipo}</p>
+                        <p>Descrição: ${equipamento.Descricao}</p>
+                        <hr>
+                    `;
+                    resultadosDiv.appendChild(equipamentoDiv);
                 });
-
-                resultadosDiv.appendChild(select);
             } else {
                 resultadosDiv.innerHTML = `<p>Nenhum resultado encontrado para "${data.query}"</p>`;
             }
@@ -143,19 +138,4 @@ function buscar(event) {
             const resultadosDiv = document.getElementById('resultados');
             resultadosDiv.innerHTML = `<p>Erro na busca: ${error.message}</p>`;
         });
-}
-
-function mostrarDetalhes() {
-    const select = document.getElementById('resultadoSelecionado');
-    const equipamento = JSON.parse(select.value);
-    const detalhesDiv = document.getElementById('detalhes');
-
-    detalhesDiv.innerHTML = `
-        <h3>Cliente CPF: ${equipamento.Cliente_CPF}</h3>
-        <h3>Funcionário Matrícula: ${equipamento.Funcionario_Matricula}</h3>
-        <p>IP: ${equipamento.IP}</p>
-        <p>Mac: ${equipamento.Mac}</p>
-        <p>Tipo: ${equipamento.Tipo}</p>
-        <p>Descrição: ${equipamento.Descricao}</p>
-    `;
 }

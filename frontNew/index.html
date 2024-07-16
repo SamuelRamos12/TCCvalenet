@@ -1,10 +1,9 @@
-<!DOCTYPE html>
+'<!DOCTYPE html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <title>HostHub</title>
   </head>
   <body>
@@ -12,14 +11,11 @@
       <img class="logo" src="logo.png" alt="..." class="img1" />
       <div class="ret1"><h1>HOSTHUB</h1></div>
       <div class="ret3">
-        <form onsubmit="buscar(event);">
-          <input type="text" id="query" placeholder="Digite a palavra-chave para buscar" required>
-          <button type="submit">Buscar</button>
-      </form>
+        <input type="text" placeholder="O que você deseja monitorar?" />
       </div>
        
         <div id="notificacao"class="notificacao">
-          <svg
+          <svg class="noti"
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
             height="50px"
@@ -51,7 +47,7 @@
 
       
         <div class="usuario" id="usuario">
-          <svg
+          <svg class="usu"
           
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -265,30 +261,44 @@
     </div>
 
     <div id="modalcadastro" class="modalcadastro">
-      <div class="modal-content">
+      <div class="modal-content-cadastro">
         <span id="close" class="close">&times;</span>
-        <h2 class="titulocadastro">O que/quem você deseja cadastrar?</h2>
-        <radio>CLIENTE</radio>
-        <radio>FUNCIONÁRIO</radio>
-        <radio>EQUIPAMENTO</radio>
-        <button id="btn-enter">Entrar</button>
+        <h2 class="titulocadastro">O QUE/QUEM VOCÊ DESEJA CADASTRAR?</h2>
+        <hr>
+        <div class="radio-group">
+          <input type="radio" id="cliente" name="cadastro" value="cliente">
+          <label for="cliente" class="op"><h2>CLIENTE</h2></label>
+        </div>
+        <div class="radio-group">
+          <input type="radio" id="funcionario" name="cadastro" value="funcionario">
+          <label for="funcionario" class="op"><h2>FUNCIONÁRIO</h2></label>
+        </div>
+        <div class="radio-group">
+          <input type="radio" id="equipamento" name="cadastro" value="equipamento">
+          <label for="equipamento" class="op"><h2>EQUIPAMENTO</h2></label>
+        </div>
+        <div class="button-container">
+          <button id="btn-enter" class="btn-enter"><h3>ENTER</h3></button>
+        </div>
       </div>
     </div>
+    
+    
+    
+    
 
     <div id="modalhost" class="modalhost">
-      <div class="modal-content">
-        <span id="close" class="close">&times;</span>
-        <h2 class="titulocadastro">HOST CADASTRADOS</h2>
-        
-        <button id="btn-enter">Entrar</button>
-        
+      <div class="modal-content-redehost">
+        <span id="close1" class="close">&times;</span>
+        <h1 class="titulocadastro">HOST CADASTRADOS</h1>       
       </div>
     </div>
 
     <div id="modalhostindividual" class="modalhostindividual">
-      <div class="modal-content">
-        <span id="close" class="close">&times;</span>
+      <div class="modal-content-individual">
+        <span id="close2" class="close">&times;</span>
         <h2 class="titulocadastro">HOST INDIVIDUAL</h2>
+        
         
         <button id="btn-enter">Entrar</button>
         
@@ -297,11 +307,11 @@
 
 
     <div id="modalnotificacao" class="modalnotificacao">
-      <div class="modal-content">
-        <span id="close" class="close">&larr;</span>
+      <div class="modal-content-notificacao">
+        <span id="close3" class="close-seta">&larr;</span>
         <h2 class="titulocadastro">NOTIFICAÇÃO</h2>
         
-        <button id="btn-enter">Entrar</button>
+       
         
       </div>
     </div>
@@ -309,8 +319,9 @@
 
 
     <div id="modalusuario" class="modalusuario">
-      <div class="modal-content">
-        <span id="close" class="close">&larr;</span>
+      <div class="modal-content-usuario">
+        <span id="close4" class="close-seta">&larr;</span>
+        
         <h2 class="titulocadastro">usuario</h2>
         
         <button id="btn-enter">Entrar</button>
@@ -318,12 +329,6 @@
       </div>
     </div>
 
-    <div class="resultado-busca">
-      <h2>Resultados da Busca</h2>
-      <div id="resultados"></div>
-    </div>
-
-  
     <footer></footer>
     <script src="script.js"></script>
   </body>
