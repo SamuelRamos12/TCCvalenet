@@ -125,7 +125,7 @@ function buscar(event) {
                         <p>IP: ${equipamento.IP}</p>
                         <p>Mac: ${equipamento.Mac}</p>
                         <p>Tipo: ${equipamento.Tipo}</p>
-                        <p>Descrição: ${equipamento.Descricao}</p>
+                        <p>Descrição: ${equipamento.Descrição}</p>
                         <hr>
                     `;
                     resultadosDiv.appendChild(equipamentoDiv);

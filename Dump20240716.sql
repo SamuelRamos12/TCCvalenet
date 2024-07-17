@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `tcc` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `tcc`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Win64 (x86_64)
 --
 -- Host: localhost    Database: tcc
@@ -25,14 +23,14 @@ DROP TABLE IF EXISTS `clientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clientes` (
-  `CPF` varchar(11) NOT NULL,
-  `Nome` varchar(100) NOT NULL,
-  `Email` varchar(100) DEFAULT NULL,
-  `Telefone` varchar(15) DEFAULT NULL,
-  `Endereco` varchar(255) DEFAULT NULL,
+  `CPF` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Telefone` varchar(15) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Endereço` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `DataDeNascimento` date DEFAULT NULL,
   PRIMARY KEY (`CPF`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,20 +51,20 @@ DROP TABLE IF EXISTS `equipamentos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `equipamentos` (
-  `IP` varchar(15) NOT NULL,
-  `Mac` varchar(17) NOT NULL,
-  `Tipo` varchar(50) DEFAULT NULL,
-  `Descricao` varchar(1000) DEFAULT NULL,
-  `Cliente_CPF` varchar(11) DEFAULT NULL,
+  `IP` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Mac` varchar(17) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Tipo` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Descrição` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `Cliente_CPF` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `Funcionario_Matricula` int DEFAULT NULL,
-  `link` varchar(1000) DEFAULT NULL,
+  `link` varchar(1000) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`IP`),
   UNIQUE KEY `Mac` (`Mac`),
-  KEY `Cliente_CPF` (`Cliente_CPF`),
   KEY `fk_equipamentos_funcionario` (`Funcionario_Matricula`),
+  KEY `equipamentos_ibfk_1` (`Cliente_CPF`),
   CONSTRAINT `equipamentos_ibfk_1` FOREIGN KEY (`Cliente_CPF`) REFERENCES `clientes` (`CPF`),
   CONSTRAINT `fk_equipamentos_funcionario` FOREIGN KEY (`Funcionario_Matricula`) REFERENCES `funcionarios` (`Matricula`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -75,7 +73,7 @@ CREATE TABLE `equipamentos` (
 
 LOCK TABLES `equipamentos` WRITE;
 /*!40000 ALTER TABLE `equipamentos` DISABLE KEYS */;
-INSERT INTO `equipamentos` VALUES ('12123123','3123123','DesktopPC','pc',NULL,12,'http://192.168.15.83:3000/d-solo/fdqsrtjug66tca/new-dashboard?orgId=1&from=1720151644486&to=1720151704486&panelId=1'),('192.168.1.1','9999','MikroTik','RouterBorder',NULL,12,'http://192.168.15.83:3000/d-solo/fdqsrtjug66tca/new-dashboard?orgId=1&from=1720151644486&to=1720151704486&panelId=1'),('192.168.15.50','88888','DesktopPC','Pc utilizado para sei la oq','19716815155',NULL,NULL),('1951983158','122555','DesktopPC','pc 2','19716815155',NULL,NULL);
+INSERT INTO `equipamentos` VALUES ('12123123','3123123','DesktopPC','pc',NULL,12,'http://192.168.15.83:3000/d-solo/fdqsrtjug66tca/new-dashboard?orgId=1&from=1720151644486&to=1720151704486&panelId=1'),('192.168.1.1','9999','MikroTik','RouterBorder',NULL,12,'http://192.168.15.83:3000/d-solo/fdqsrtjug66tca/new-dashboard?orgId=1&from=1720151644486&to=1720151704486&panelId=1'),('192.168.15.14','897','PC','Descrição sei lá oque',NULL,12,NULL),('192.168.15.50','88888','DesktopPC','Pc utilizado para sei la oq','19716815155',NULL,NULL),('1951983158','122555','DesktopPC','pc 2','19716815155',NULL,NULL);
 /*!40000 ALTER TABLE `equipamentos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -88,14 +86,14 @@ DROP TABLE IF EXISTS `funcionarios`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `funcionarios` (
   `Matricula` int NOT NULL,
-  `Nome` varchar(100) NOT NULL,
+  `Nome` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `DataDeNascimento` date DEFAULT NULL,
-  `EmailCorporativo` varchar(100) DEFAULT NULL,
+  `EmailCorporativo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `PermissaoID` int DEFAULT NULL,
   PRIMARY KEY (`Matricula`),
   KEY `PermissaoID` (`PermissaoID`),
-  CONSTRAINT `funcionarios_ibfk_1` FOREIGN KEY (`PermissaoID`) REFERENCES `permissoes` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `funcionarios_ibfk_1` FOREIGN KEY (`PermissaoID`) REFERENCES `permissões` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,27 +107,27 @@ INSERT INTO `funcionarios` VALUES (12,'jonh',NULL,NULL,NULL);
 UNLOCK TABLES;
 
 --
--- Table structure for table `permissoes`
+-- Table structure for table `permissões`
 --
 
-DROP TABLE IF EXISTS `permissoes`;
+DROP TABLE IF EXISTS `permissões`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `permissoes` (
+CREATE TABLE `permissões` (
   `ID` int NOT NULL AUTO_INCREMENT,
-  `NomePermissao` varchar(50) NOT NULL,
-  `Descricao` text,
+  `NomePermissao` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `Descrição` varchar(1000) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `permissoes`
+-- Dumping data for table `permissões`
 --
 
-LOCK TABLES `permissoes` WRITE;
-/*!40000 ALTER TABLE `permissoes` DISABLE KEYS */;
-/*!40000 ALTER TABLE `permissoes` ENABLE KEYS */;
+LOCK TABLES `permissões` WRITE;
+/*!40000 ALTER TABLE `permissões` DISABLE KEYS */;
+/*!40000 ALTER TABLE `permissões` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -141,4 +139,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-07-08 16:55:25
+-- Dump completed on 2024-07-16 21:07:34
