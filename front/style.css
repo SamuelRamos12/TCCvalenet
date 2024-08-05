@@ -1,239 +1,487 @@
+/* Estilização da pagina geral*/
+
 body {
-    background: #000;
-    margin: 0;
-    font-family: Verdana, sans-serif;
-  }
+  background: #000;
+  margin: 0;
+  font-family: Verdana, sans-serif;
+}
 
-  .resultado-busca{
-    padding: 15px;
-    background: #fcfbfb;
-    position: fixed;
-    z-index: 1000;
-    left: 500px;
-    top: 150px;
-    width: 50%;
-    height: 50%;
-  }
+/* Barra superior */
+.ret1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 12%;
+  background: #02084B;
+  z-index: 1;
   
-  .ret1 /* Barra superior */{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 12%;
-    background: #02084B;
-    z-index: 1;
-    
-  }
-  
-  .ret3 form /* Barra de pesquisa */{
-    position: absolute;
-    top: 3.5%;
-    left: 40%;
-    height: 5%;
-    width: 36%;
-    background-color: #fff;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 
-  input {
-    width: 100%;
-    height: 100%;
-    border: none;
-    padding: 0 10px;
-    font-size: 1em;
-    outline: none;
-    text-align: left;
-  }
+}
+
+
+/* Barra de pesquisa */
+.ret3 {
+  position: absolute;
+  top: 3.5%;
+  left: 40%;
+  height: 5%;
+  width: 36%;
+  background-color: #fff;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0 10px;
+  font-size: 1em;
+  outline: none;
+  text-align: left;
+}
+
+/* Logo HostHub */
+.logo{
+  position: absolute;
+  top: 2%;
+  left: 1%;
+  width: 80px;
+  height: 80px;
+  z-index: 2;
+  display: flex;
+}
+
+
+
+h1 {
+  position: relative;
+  margin-left: 9%;
+  margin-top: 2%;
+  color: #fff;
+}
+
+/* Icone de notificação*/
+.notificacao { 
+  position: absolute;
+  left: 80%;
+  top: 2%;
+  z-index: 1;
+  display: flex; 
   
-  .logo{
-    position: absolute;
-    top: 2%;
-    left: 1%;
-    width: 80px;
-    height: 80px;
-    z-index: 2;
-    display: flex;
-  }
+}
+
+/* Icone de usuario*/
+.usuario{
+  position: absolute;
+  top: 2%;
+  left: 90%;
+  z-index: 7;
+  display: flex; 
+}
+
+/*Configurações compartilhadas dos icones de usuario e notificação*/
+.notificacao, .usuario :hover{
+  cursor: pointer;
+}
+
+.noti {
+  height: 70px;
+  width: 70px;
+}
+
+.usu{
+  height: 70px;
+  width: 70px;
   
+}
+
+/* Menu lateral*/
+.sidebar {
+  width: 6%;
+  background-color: #02084B;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: width 0.3s;
+}
+
+/* Menu lateral ao abrir*/
+.sidebar:hover {
+  width: 200px;
+}
+
+.menu-item {
+  width: 100%;
+  margin-left: -30px;
+  top: 20%;
   
+  padding: 20px;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+}
+
+.menu-item img {
+  width: 24px;
+  height: 24px;
+  transition: opacity 0.3s;
+}
+
+.menu-item span {
+  display: none;
+  position: absolute;
+  left: 100px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+}
+
+.sidebar:hover .menu-item span {
+  display: inline;
+}
+
+.main-content {
+  margin-left: 60px;
+  padding: 20px;
+}
+
+/* Estilos para o modal */
+.modalcadastro {
+  display: none; 
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+}
+
+.modalhost {
+  display: none; 
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0); 
+  overflow: auto;
+}
+
+
+.modalhostindividual {
+  display: none; 
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0); 
+}
+
+.modalnotificacao {
+  display: none; 
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  overflow: auto;
+}
+
+.modalusuario {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: #fefefe; 
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; 
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 60px;
+}
+
+/* Estilização especifica de cada modal */
+
+/* Estilização modal cadastro parte 1*/
+.modal-content-cadastro {
+  background-color: #02084B; 
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #fff;
+  width: 30%; 
+  color: #fff;
+  border-radius: 50px;
+  text-align: center;
+
+}
+
+.titulocadastro {
+  text-align: center;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
   
-  h1 {
-    position: relative;
-    margin-left: 9%;
-    margin-top: 2%;
-    color: #fff;
-  }
+}
+
+.radio-group input[type="radio"] {
+  transform: scale(1.5); 
+  margin-left: -45%;
+}
+
+.radio-group label {
+  display: inline-block;
+  margin-left: -20%;
   
-  .notificacao { 
-    position: absolute;
-    left: -29px;
-    z-index: 1;
-    display: flex; 
-    
-  }
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; 
+}
+
+.btn-enter {
+  width: 50%; 
+  background: linear-gradient(to right, #112070, #0A5294, #98DFF6);
+  border-radius: 50px;
+  color: #fff;
+  border: none; 
+  padding: 10px; 
+  cursor: pointer; 
+}
+
+.btn-enter h3 {
+  margin: 0; 
+}
+
+/* Estilização modal cadastro parte 2*/
+
+.modal-content-cad-cliente {
+  background-color: #003; 
+  margin-top: 2.78%;
+  height: 89%;
+  margin-left: 6%;
+  width: 94%; 
+  color: #fff;
+  text-align: center; 
+  padding: 20px;
+}
+
+/*Estilização formulario cliente*/
+
+
+.form-group1,
+.form-group3,
+.form-group4 {
+  display: flex;
+  flex-direction: row;
+  gap: 4.5%; /* Espaço entre os elementos */
+}
   
+.cliente-nome, .cliente-email {
+  width: 90%;
+  padding: 10px;
+  border: 2px solid #de0c0c;
+  border-radius: 50px;
+  background-color: #abf9ff;
+  color: #fff;
+  height: 2%;
+}
+
+.cliente-cpf, .cliente-tel,
+.cliente-complemento, .cliente-data{
+  width: 40%;
+  padding: 10px;
+  border: 2px solid #de0c0c;
+  border-radius: 50px;
+  background-color: #abf9ff;
+  color: #fff;
+  margin-left: 4.5%;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.cliente-rua{
+
+}
+
+.cliente-numero {
+
+}
+
+.cliente-bairro {
   
+}
+/*
+input[type="text"] ,
+input[type="tel"],
+input[type="email"],
+input[type="date"] {
+  width: calc(30% - 20px);
+  padding: 10px;
+  border: 1px solid #666;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  color: #fff;
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus {
+  border-color: rgb(255, 255, 255);
+  outline: none;
+}
+*/
+
+
+button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #09f;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #007acc;
+}
+/Acaba aqui/
+
+.modal-content-cad-funcionario {
+  background-color: #00dffd; 
+  margin-top: 2.78%;
+  height: 89%;
+  margin-left: 6%;
+  width: 94%; 
+  color: #fff;
+  text-align: center; 
+}
+
+.modal-content-cad-equipamento {
+  background-color: #f2aaff; 
+  margin-top: 2.78%;
+  height: 89%;
+  margin-left: 6%;
+  width: 94%; 
+  color: #fff;
+  text-align: center; 
+}
+
+/* Estilização modal rede host*/
+.modal-content-redehost{
+  background-color: #df0202; 
+  margin-left: 6%; 
+  margin-top: 6%;
+  color: #fff;
+  text-align: center;
+  width: 93.9%;
+  height: 87.6%;
   
-  .notificacao, .usuario :hover{
-    cursor: pointer;
-  }
-  
-  
-  
-  .notificacao {
-     left: 80%;
-     z-index:2;
-  }
-  
-  
-  .usuario{
-    position: absolute;
-    left: -26px;
-    z-index: 7;
-    display: flex; 
-    
-  }
-  
-  
-  
-  .sidebar {
-    width: 80px;
-    background-color: #02084B;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: width 0.3s;
-  }
-  
-  .sidebar:hover {
-    width: 200px;
-  }
-  
-  .menu-item {
-    width: 100%;
-    margin-left: -30px;
-    top: 20%;
-    
-    padding: 20px;
-    text-align: left;
-    cursor: pointer;
-    position: relative;
-  }
-  
-  .menu-item img {
-    width: 24px;
-    height: 24px;
-    transition: opacity 0.3s;
-  }
-  
-  .menu-item span {
-    display: none;
-    position: absolute;
-    left: 100px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: white;
-  }
-  
-  .sidebar:hover .menu-item span {
-    display: inline;
-  }
-  
-  .main-content {
-    margin-left: 60px;
-    padding: 20px;
-  }
-  
-  /* Estilos para o modal */
-  .modalcadastro {
-    display: none; /* Inicialmente oculto */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente */
-    overflow: auto;
-  }
-  
-  .modalhost {
-    display: none; /* Inicialmente oculto */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente */
-    overflow: auto;
-  }
-  
-  
-  .modalhostindividual {
-    display: none; /* Inicialmente oculto */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente */
-    overflow: auto;
-  }
-  
-  .modalnotificacao {
-    display: none; /* Inicialmente oculto */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente */
-    overflow: auto;
-  }
-  
-  .modalusuario {
-    display: none; /* Inicialmente oculto */
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente */
-    overflow: auto;
-  }
-  
-  .modal-content {
-    background-color: #fefefe; /* Cor de fundo do modal */
-    margin: 15% auto; /* Centraliza vertical e horizontalmente */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Largura do modal */
-  }
-  
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  
+  border: 1px solid #000000;
+}
+
+/* Estilização modal host individual*/
+.modal-content-individual {
+  background-color: #fd08c4; 
+  margin-top: 6%;
+  height: 87%;
+  margin-left: 6%;
+  width: 94%; 
+  color: #fff;
+  text-align: center; 
+}
+
+/* Estilização modal usuario (possui seta)*/
+.modal-content-usuario {
+  background-color: #45fd08; 
+  margin-top: 6%;
+  height: 87%;
+  margin-left: 6%;
+  width: 94%; 
+  color: #fff;
+  text-align: center; 
+}
+
+/* Estilização modal notificação (possui seta)*/
+.modal-content-notificacao{
+  background-color: #a600ff;
+  margin-top: 6%;
+  height: 40%;
+  margin-left: 75%;
+  width: 15%;
+  color: #fff;
+  text-align: center;
+}
+
+/* Estilização (x)*/
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Estilização (seta)*/
+.close-seta {
+  color: #ffffff;
+  float: left;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-seta:hover,
+.close-seta:focus {
+  color: rgb(255, 0, 0);
+  text-decoration: none;
+  cursor: pointer;
+}

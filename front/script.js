@@ -1,26 +1,25 @@
-// Função para abrir o modal de cadastro
 function abrirCadastroModal() {
     const modalcadastro = document.getElementById('modalcadastro');
-    modalcadastro.style.display = 'block'; // Exibe o modal
+    modalcadastro.style.display = 'block'; 
 }
 
-// Evento de clique no botão de login para abrir o modal
+
 const menucadastro = document.getElementById('menucadastro');
 menucadastro.addEventListener('click', abrirCadastroModal);
 
-//Função para fechar o modal de cadastro ao clicar no 'X'
+
 function fecharCadastroModal() {
   const modalcadastro = document.getElementById('modalcadastro');
-  modalcadastro.style.display = 'none';// Oculta o modal
+  modalcadastro.style.display = 'none';
   console.log("dnadasl")
 } 
 
-// Evento de clique no botão de fechar ('X') para fechar o modal
-const closeBtn = document.getElementsByClassName('close')[0];
-const closeBtn1 = document.getElementsByClassName('close')[1];
-const closeBtn2 = document.getElementsByClassName('close')[2];
-const closeBtn3 = document.getElementsByClassName('close')[3];
-const closeBtn4 = document.getElementsByClassName('close')[4];
+
+const closeBtn = document.getElementById('close');
+const closeBtn1 = document.getElementById('close1');
+const closeBtn2 = document.getElementById('close2');
+const closeBtn3 = document.getElementById('close3');
+const closeBtn4 = document.getElementById('close4');
 closeBtn.addEventListener('click', fecharCadastroModal);
 closeBtn1.addEventListener('click', fecharHost);
 closeBtn2.addEventListener('click', fecharhostindividual);
@@ -28,114 +27,193 @@ closeBtn3.addEventListener('click', fecharnotificacao);
 closeBtn4.addEventListener('click', fecharusuario);
 
 
-// Função para abrir o modal de host
+
 function abrirHost() {
     const modalhost = document.getElementById('modalhost');
-    modalhost.style.display = 'block'; // Exibe o modal
+    modalhost.style.display = 'block'; 
 }
 
-// Evento de clique no botão de login para abrir o modal
+
 const menuhost = document.getElementById('menuhost');
 menuhost.addEventListener('click', abrirHost);
 
-//Função para fechar o modal de cadastro ao clicar no 'X'
+
 function fecharHost() {
   const modalhost = document.getElementById('modalhost');
-  modalhost.style.display = 'none';// Oculta o modal
+  modalhost.style.display = 'none';
   console.log("dnadasl")
 } 
 
 
 
 
-// Função para abrir o modal de cadastro
+
 function abrirmodalhostindividual() {
     const modalhostindividual = document.getElementById('modalhostindividual');
-    modalhostindividual.style.display = 'block'; // Exibe o modal
+    modalhostindividual.style.display = 'block'; 
 }
 
-// Evento de clique no botão de login para abrir o modal
+
 const menuhostindividual = document.getElementById('menuhostindividual');
 menuhostindividual.addEventListener('click', abrirmodalhostindividual);
 
-//Função para fechar o modal de cadastro ao clicar no 'X'
+
 function fecharhostindividual() {
   const modalhostindividual = document.getElementById('modalhostindividual');
-  modalhostindividual.style.display = 'none';// Oculta o modal
+  modalhostindividual.style.display = 'none';
   console.log("dnadasl")
 }
 
 
 
 
-// Função para abrir o modal de cadastro
+
 function abrirnotificacao() {
     const modalnotificacao = document.getElementById('modalnotificacao');
-    modalnotificacao.style.display = 'block'; // Exibe o modal
+    modalnotificacao.style.display = 'block'; 
 }
 
-// Evento de clique no botão de login para abrir o modal
+
 const notificacao = document.getElementById('notificacao');
 notificacao.addEventListener('click', abrirnotificacao);
 
-//Função para fechar o modal de cadastro ao clicar no 'X'
+
 function fecharnotificacao() {
   const modalnotificacao = document.getElementById('modalnotificacao');
-  modalnotificacao.style.display = 'none';// Oculta o modal
+  modalnotificacao.style.display = 'none';
 } 
 
 
-// Função para abrir o modal de cadastro
+
 function abrirusuario() {
     const modalusuario = document.getElementById('modalusuario');
-    modalusuario.style.display = 'block'; // Exibe o modal
+    modalusuario.style.display = 'block'; 
 }
 
-// Evento de clique no botão de login para abrir o modal
+
 const usuario = document.getElementById('usuario');
 usuario.addEventListener('click', abrirusuario);
 
-//Função para fechar o modal de cadastro ao clicar no 'X'
+
 function fecharusuario() {
   const modalusuario = document.getElementById('modalusuario');
   modalusuario.style.display = 'none';// Oculta o modal
 } 
 
-//Fução do buscador de equipamentos
-function buscar(event) {
-    event.preventDefault(); // Previne o envio do formulário padrão
-    const query = document.getElementById('query').value;
-    fetch('/TCCvalenet/back/buscador.php?query=' + encodeURIComponent(query))
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-            return response.json();
-        })
-        .then(data => {
-            const resultadosDiv = document.getElementById('resultados');
-            resultadosDiv.innerHTML = '';
 
-            if (data.resultados.length > 0) {
-                data.resultados.forEach(equipamento => {
-                    const equipamentoDiv = document.createElement('div');
-                    equipamentoDiv.innerHTML = `
-                        <h3>Cliente CPF: ${equipamento.Cliente_CPF}</h3>
-                        <h3>Funcionário Matrícula: ${equipamento.Funcionario_Matricula}</h3>
-                        <p>IP: ${equipamento.IP}</p>
-                        <p>Mac: ${equipamento.Mac}</p>
-                        <p>Tipo: ${equipamento.Tipo}</p>
-                        <p>Descrição: ${equipamento.Descrição}</p>
-                        <hr>
-                    `;
-                    resultadosDiv.appendChild(equipamentoDiv);
-                });
-            } else {
-                resultadosDiv.innerHTML = `<p>Nenhum resultado encontrado para "${data.query}"</p>`;
-            }
-        })
-        .catch(error => {
-            const resultadosDiv = document.getElementById('resultados');
-            resultadosDiv.innerHTML = `<p>Erro na busca: ${error.message}</p>`;
-        });
-}
+
+
+
+
+document.getElementById('btn-enter').onclick = function() {
+  var selectedOption = document.querySelector('input[name="cadastro"]:checked');
+  
+  if (selectedOption) {
+    var modalId = 'modal' + selectedOption.value;
+    var modal = document.getElementById(modalId);
+    var mainModal = document.getElementById('modalcadastro');
+    
+    if (modal) {
+      mainModal.style.display = 'none';
+      modal.style.display = 'block';
+      
+      var closeBtns = modal.getElementsByClassName('close');
+      for (var i = 0; i < closeBtns.length; i++) {
+        closeBtns[i].onclick = function() {
+          modal.style.display = 'none';
+          mainModal.style.display = 'block';
+        };
+      }
+    }
+  }
+};
+
+window.onclick = function(event) {
+  var modals = document.getElementsByClassName('modal');
+  for (var i = 0; i < modals.length; i++) {
+    if (event.target == modals[i]) {
+      modals[i].style.display = 'none';
+      document.getElementById('modalcadastro').style.display = 'block';
+    }
+  }
+};
+
+document.getElementById('close').onclick = function() {
+  document.getElementById('modalcadastro').style.display = 'none';
+};
+
+
+
+
+$(document).ready(function() {
+  // Fazer uma requisição AJAX para obter o link do PHP
+  $.ajax({
+      url: '/TCCVALENET/back/host.php',
+      type: 'GET',
+      dataType: 'json',
+      success: function(data) {
+          if (data.link) {
+              $('#iframe-display1').attr('src', data.link);
+          } else {
+              $('#iframe-display1').attr('src', ''); // Caso não tenha link, limpa o iframe
+          }
+      },
+      error: function() {
+          console.error('Erro ao buscar o link do banco de dados.');
+      }
+  });
+
+  // Adicionar evento de clique no iframe-display1
+  $('#iframe-display1').on('click', function() {
+      var link = $(this).attr('src');
+      if (link) {
+          // Atualiza o iframe dentro do modal individual
+          $('#iframe-display').attr('src', link);
+
+          // Abre o modal individual
+          $('#modalhostindividual').show();
+      }
+  });
+
+  // Inicializar o Select2 na lista suspensa
+  $('#categorias').select2();
+
+  // Requisição AJAX para buscar categorias do arquivo PHP
+  $.ajax({
+      url: '/TCCVALENET/back/lista.php',
+      dataType: 'json',
+      success: function(data) {
+          // Iterar sobre os dados retornados e adicionar opções à lista suspensa
+          $.each(data, function(index, item) {
+              $('#categorias').append('<option value="' + item.link + '">' + item.Tipo + " " + item.IP + '</option>');
+          });
+
+          // Atualizar o Select2 para refletir as novas opções adicionadas dinamicamente
+          $('#categorias').trigger('change');
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+          console.error('Erro ao carregar categorias: ' + textStatus, errorThrown);
+      }
+  });
+
+  // Adicionar função para exibir o iframe
+  $('#categorias').on('change', function() {
+      var selectedValue = $(this).val();
+      var iframeDisplay = $('#iframe-display');
+
+      if (selectedValue) {
+          iframeDisplay.attr('src', selectedValue);
+      } else {
+          iframeDisplay.attr('src', '');
+      }
+  });
+
+  // Fechar modais
+  $('#close1').on('click', function() {
+      $('#modalhost').hide();
+  });
+
+  $('#close2').on('click', function() {
+      $('#modalhostindividual').hide();
+  });
+});

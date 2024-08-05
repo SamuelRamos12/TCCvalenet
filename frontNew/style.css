@@ -1,338 +1,383 @@
 body {
-    background: #000;
-    margin: 0;
-    font-family: Verdana, sans-serif;
+  background: #000;
+  margin: 0;
+  font-family: Verdana, sans-serif;
+}
+
+.ret1 /* Barra superior */{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 12%;
+  background: #02084B;
+  z-index: 1;
+  
+
+}
+
+.ret3 /* Barra de pesquisa */{
+  position: absolute;
+  top: 3.5%;
+  left: 40%;
+  height: 5%;
+  width: 36%;
+  background-color: #fff;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0 10px;
+  font-size: 1em;
+  outline: none;
+  text-align: left;
+}
+
+.logo{
+  position: absolute;
+  top: 2%;
+  left: 1%;
+  width: 80px;
+  height: 80px;
+  z-index: 2;
+  display: flex;
+}
+
+
+
+h1 {
+  position: relative;
+  margin-left: 9%;
+  margin-top: 2%;
+  color: #fff;
+}
+
+.notificacao { 
+  position: absolute;
+  left: 80%;
+  top: 2%;
+  z-index: 1;
+  display: flex; 
+  
+}
+
+
+
+.notificacao, .usuario :hover{
+  cursor: pointer;
+}
+
+.noti {
+  height: 70px;
+  width: 70px;
+}
+
+
+
+
+
+.usuario{
+  position: absolute;
+  top: 2%;
+  left: 90%;
+  z-index: 7;
+  display: flex; 
   }
+
+.usu{
+  height: 70px;
+  width: 70px;
   
-  .ret1 /* Barra superior */{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 12%;
-    background: #02084B;
-    z-index: 1;
-    
+}
+
+.sidebar {
+  width: 6%;
+  background-color: #02084B;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: width 0.3s;
+}
+
+.sidebar:hover {
+  width: 200px;
+}
+
+.menu-item {
+  width: 100%;
+  margin-left: -30px;
+  top: 20%;
   
-  }
+  padding: 20px;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+}
+
+.menu-item img {
+  width: 24px;
+  height: 24px;
+  transition: opacity 0.3s;
+}
+
+.menu-item span {
+  display: none;
+  position: absolute;
+  left: 100px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+}
+
+.sidebar:hover .menu-item span {
+  display: inline;
+}
+
+.main-content {
+  margin-left: 60px;
+  padding: 20px;
+}
+
+/* Estilos para o modal */
+.modalcadastro {
+  display: none; 
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  overflow: auto;
+}
+
+.modalhost {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0); 
+  overflow: auto;
+}
+
+
+.modalhostindividual {
+  display: none; 
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0); 
+  overflow: auto;
+}
+
+.modalnotificacao {
+  display: none; 
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  overflow: auto;
+}
+
+/*MODAL DE CADASTRO*/
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+  padding-top: 60px;
+}
+
+.modal-content, .modal-content-cad-cliente, .modal-content-cad-funcionario, .modal-content-cad-equipamento {
+  position: fixed;
+  z-index: 1000;
+  left: 800px;
+  top: 250px;
   
-  .ret3 /* Barra de pesquisa */{
-    position: absolute;
-    top: 3.5%;
-    left: 40%;
-    height: 5%;
-    width: 36%;
-    background-color: #fff;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  background-color: #8d96ff;
+  padding: 50px;
+  border-radius: 20px;
+
   
-  input {
-    width: 100%;
-    height: 100%;
-    border: none;
-    padding: 0 10px;
-    font-size: 1em;
-    outline: none;
-    text-align: left;
-  }
+  margin: 5% auto;
+  border: 1px solid #888;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+/*MODAL DE CADASTRO*/
+
+.modalusuario {
+  display: none; 
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  overflow: auto;
+}
+
+.modal-content {
+  background-color: #fefefe; 
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; 
+}
+
+.modal-content-cadastro {
+  background-color: #02084B; 
+  margin: 15% auto; 
+  padding: 20px;
+  border: 1px solid #fff;
+  width: 30%; 
+  color: #fff;
+  border-radius: 50px;
+  text-align: center; 
+}
+
+.titulocadastro {
+  text-align: center;
+}
+
+.radio-group {
+  display: flex;
+  align-items: left;
+  justify-content: left; 
+  text-align: left;
+  margin-bottom: 10px;
+  padding-left: 0; 
+  left: 2px;
+}
+
+.op {
+  margin-left: 10px; 
+}
+
+.button-container {
+  display: flex;
+  justify-content: center; 
+}
+
+.btn-enter {
+  width: 50%; 
+  background: linear-gradient(to right, #112070, #0A5294, #98DFF6);
+  border-radius: 50px;
+  color: #fff;
+  border: none; 
+  padding: 10px; 
+  cursor: pointer; 
+}
+
+.btn-enter h3 {
+  margin: 0; 
+}
+
+.modal-content-redehost{
+  background-color: #df0202; 
+  margin-top: 6%;
+  color: #fff;
+  text-align: center;
+  width: 93.9%;
+  height: 87.6%;
   
-  .logo{
-    position: absolute;
-    top: 2%;
-    left: 1%;
-    width: 80px;
-    height: 80px;
-    z-index: 2;
-    display: flex;
-  }
-  
-  
-  
-  h1 {
-    position: relative;
-    margin-left: 9%;
-    margin-top: 2%;
-    color: #fff;
-  }
-  
-  .notificacao { 
-    position: absolute;
-    left: 80%;
-    top: 2%;
-    z-index: 1;
-    display: flex; 
-    
-  }
-  
-  
-  
-  .notificacao, .usuario :hover{
-    cursor: pointer;
-  }
-  
-  .noti {
-    height: 70px;
-    width: 70px;
-  }
-  
-  
-  
-  
-  
-  .usuario{
-    position: absolute;
-    top: 2%;
-    left: 90%;
-    z-index: 7;
-    display: flex; 
-    }
-  
-  .usu{
-    height: 70px;
-    width: 70px;
-    
-  }
-  
-  .sidebar {
-    width: 6%;
-    background-color: #02084B;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: width 0.3s;
-  }
-  
-  .sidebar:hover {
-    width: 200px;
-  }
-  
-  .menu-item {
-    width: 100%;
-    margin-left: -30px;
-    top: 20%;
-    
-    padding: 20px;
-    text-align: left;
-    cursor: pointer;
-    position: relative;
-  }
-  
-  .menu-item img {
-    width: 24px;
-    height: 24px;
-    transition: opacity 0.3s;
-  }
-  
-  .menu-item span {
-    display: none;
-    position: absolute;
-    left: 100px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: white;
-  }
-  
-  .sidebar:hover .menu-item span {
-    display: inline;
-  }
-  
-  .main-content {
-    margin-left: 60px;
-    padding: 20px;
-  }
-  
-  /* Estilos para o modal */
-  .modalcadastro {
-    display: none; 
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
-    overflow: auto;
-  }
-  
-  .modalhost {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0); 
-    overflow: auto;
-  }
-  
-  
-  .modalhostindividual {
-    display: none; 
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0); 
-    overflow: auto;
-  }
-  
-  .modalnotificacao {
-    display: none; 
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
-    overflow: auto;
-  }
-  
-  .modalusuario {
-    display: none; 
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
-    overflow: auto;
-  }
-  
-  .modal-content {
-    background-color: #fefefe; 
-    margin: 15% auto; 
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; 
-  }
-  
-  .modal-content-cadastro {
-    background-color: #02084B; 
-    margin: 15% auto; 
-    padding: 20px;
-    border: 1px solid #fff;
-    width: 30%; 
-    color: #fff;
-    border-radius: 50px;
-    text-align: center; 
-  }
-  
-  .titulocadastro {
-    text-align: center;
-  }
-  
-  .radio-group {
-    display: flex;
-    align-items: left;
-    justify-content: left; 
-    text-align: left;
-    margin-bottom: 10px;
-    padding-left: 0; 
-    left: 2px;
-  }
-  
-  .op {
-    margin-left: 10px; 
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: center; 
-  }
-  
-  .btn-enter {
-    width: 50%; 
-    background: linear-gradient(to right, #112070, #0A5294, #98DFF6);
-    border-radius: 50px;
-    color: #fff;
-    border: none; 
-    padding: 10px; 
-    cursor: pointer; 
-  }
-  
-  .btn-enter h3 {
-    margin: 0; 
-  }
-  
-  .modal-content-redehost{
-    background-color: #df0202; 
-    margin-top: 6%;
-    color: #fff;
-    text-align: center;
-    width: 93.9%;
-    height: 87.6%;
-    
-    border: 1px solid #000000;
-  }
-  
-  .modal-content-individual {
-    background-color: #fd08c4; 
-    margin-top: 6%;
-    height: 87%;
-    margin-left: 6%;
-    width: 94%; 
-    color: #fff;
-    text-align: center; 
-  }
-  .modal-content-usuario {
-    background-color: #45fd08; 
-    margin-top: 6%;
-    height: 87%;
-    margin-left: 6%;
-    width: 94%; 
-    color: #fff;
-    text-align: center; 
-  }
-  
-  .modal-content-notificacao{
-    background-color: #a600ff;
-    margin-top: 6%;
-    height: 40%;
-    margin-left: 75%;
-    width: 15%;
-    color: #fff;
-    text-align: center;
-  }
-  
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close-seta {
-    color: #ffffff;
-    float: left;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .close-seta:hover,
-  .close-seta:focus {
-    color: rgb(255, 0, 0);
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-  
+  border: 1px solid #000000;
+}
+
+.modal-content-individual {
+  background-color: #fd08c4; 
+  margin-top: 6%;
+  height: 87%;
+  margin-left: 6%;
+  width: 94%; 
+  color: #fff;
+  text-align: center; 
+}
+.modal-content-usuario {
+  background-color: #45fd08; 
+  margin-top: 6%;
+  height: 87%;
+  margin-left: 6%;
+  width: 94%; 
+  color: #fff;
+  text-align: center; 
+}
+
+.modal-content-notificacao{
+  background-color: #a600ff;
+  margin-top: 6%;
+  height: 40%;
+  margin-left: 75%;
+  width: 15%;
+  color: #fff;
+  text-align: center;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-seta {
+  color: #ffffff;
+  float: left;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close-seta:hover,
+.close-seta:focus {
+  color: rgb(255, 0, 0);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+

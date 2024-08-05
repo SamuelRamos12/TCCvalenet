@@ -1,25 +1,27 @@
+HTML 
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <title>HostHub</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
   </head>
   <body>
     <header>
       <img class="logo" src="logo.png" alt="..." class="img1" />
       <div class="ret1"><h1>HOSTHUB</h1></div>
       <div class="ret3">
-        <form onsubmit="buscar(event);">
-          <input type="text" id="query" placeholder="Digite a palavra-chave para buscar" required>
-          <button type="submit">Buscar</button>
-      </form>
+        <input type="text" placeholder="O que você deseja monitorar?" />
       </div>
        
         <div id="notificacao"class="notificacao">
-          <svg
+          <svg class="noti"
             xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink"
             height="50px"
@@ -51,7 +53,7 @@
 
       
         <div class="usuario" id="usuario">
-          <svg
+          <svg class="usu"
           
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -260,48 +262,146 @@
             />
           </svg>
           <span>HOST INDIVIDUAL</span>
+         
+
         
       </div>
     </div>
 
     <div id="modalcadastro" class="modalcadastro">
-      <div class="modal-content">
+      <div class="modal-content-cadastro">
         <span id="close" class="close">&times;</span>
-        <h2 class="titulocadastro">O que/quem você deseja cadastrar?</h2>
-        <radio>CLIENTE</radio>
-        <radio>FUNCIONÁRIO</radio>
-        <radio>EQUIPAMENTO</radio>
-        <button id="btn-enter">Entrar</button>
+        <h2 class="titulocadastro">O QUE/QUEM VOCÊ DESEJA CADASTRAR?</h2>
+        <hr>
+        <div class="radio-group">
+          <input type="radio" id="cliente" name="cadastro" value="cliente" class="kkk">
+          <label for="cliente" class="op"><h2>CLIENTE </h2></label>
+        </div>
+        <div class="radio-group">
+          <input type="radio" id="funcionario" name="cadastro" value="funcionario" >
+          <label for="funcionario" class="op"><h2>FUNCIONÁRIO</h2></label>
+        </div>
+        <div class="radio-group">
+          <input type="radio" id="equipamento" name="cadastro" value="equipamento" class="kkk">
+          <label for="equipamento" class="op"><h2>EQUIPAMENTO</h2></label>
+        </div>
+        <div class="button-container">
+          <button id="btn-enter" class="btn-enter"><h3>ENTER</h3></button>
+        </div>
       </div>
     </div>
+    
 
-    <div id="modalhost" class="modalhost">
-      <div class="modal-content">
-        <span id="close" class="close">&times;</span>
-        <h2 class="titulocadastro">HOST CADASTRADOS</h2>
+    <div id="modalcliente" class="modal">
+      <div class="modal-content-cad-cliente">
+        <span class="close">&times;</span>
+        <h2>Cadastro de Cliente</h2>
         
-        <button id="btn-enter">Entrar</button>
-        
+        <form>
+          <form>
+            <input type="text" class="cliente-nome" id="nome" name="nome" placeholder="Nome Completo" required>
+            
+            <div class="form-group1">
+              <input type="text" class="cliente-cpf" id="cpf" name="cpf" placeholder="CPF" required>
+              <input type="tel" class="cliente-tel" id="telefone" name="telefone" placeholder="Telefone (   )  __-_" required>
+            </div>
+          </form>
+          
+          
+              <input type="email" class="cliente-email" id="email" name="email" placeholder="Email" required>
+          
+          <div class="form-group3">
+              
+              <input type="text" class="cliente-rua" id="rua" name="rua" placeholder="Rua/Avenida" required>
+              <input type="text" class="cliente-num" id="numero" name="numero" placeholder="Nº da casa/prédio" required>
+              <input type="text" class="cliente-bairro" id="bairro" name="bairro" placeholder="Bairro" required>
+          </div>
+
+          <div class="form-group4">
+              <input type="text" class="cliente-complemento" id="complemento" name="complemento" placeholder="Complemento">
+              <input type="date" class="cliente-data" id="dataNascimento" name="dataNascimento" required>
+          </div>
+          <button type="submit">Cadastrar</button>
+      </form>
+
+
+
+
+
       </div>
     </div>
+    
+    <div id="modalfuncionario" class="modal">
+      <div class="modal-content-cad-funcionario">
+        <span class="close">&times;</span>
+        <h2>Cadastro de Funcionário</h2>
+        <!-- Conteúdo do modal funcionário -->
+      </div>
+    </div>
+    
+    <div id="modalequipamento" class="modal">
+      <div class="modal-content-cad-equipamento">
+        <span class="close">&times;</span>
+        <h2>Cadastro de Equipamento</h2>
+        <!-- Conteúdo do modal equipamento -->
+        <form action="CadastroEquip.php" method="post">
+          <label for="IP">IP:</label><br>
+          <input type="text" id="IP" name="IP" required><br>
+      
+          <label for="Mac">Mac:</label><br>
+          <input type="text" id="Mac" name="Mac" required><br>
+      
+          <label for="Tipo">Tipo:</label><br>
+          <input type="text" id="Tipo" name="Tipo" required><br>
+      
+          <label for="Descrição">Descrição:</label><br>
+          <textarea id="Descrição" name="Descrição" required></textarea><br>
+      
+          <input type="radio" id="cliente" name="tipo_usuario" value="cliente">
+          <label for="cliente">Cliente CPF:</label><br>
+          <input type="text" id="Cliente_CPF" name="Cliente_CPF"><br>
+      
+          <input type="radio" id="funcionario" name="tipo_usuario" value="funcionario">
+          <label for="funcionario">Funcionário Matrícula:</label><br>
+          <input type="text" id="Funcionario_Matricula" name="Funcionario_Matricula"><br>
+      
+          <input type="submit" value="Cadastrar">
+      </form>
+      </div>
+    </div>
+    
 
+       <!-- Modal para HOST CADASTRADOS -->
+       <div id="modalhost" class="modalhost">
+        <div class="modal-content-redehost">
+            <span id="close1" class="close">&times;</span>
+            <h1 class="titulocadastro">HOST CADASTRADOS</h1>
+            <div id="iframe-container" style="margin-top: 20px;">
+                <iframe id="iframe-display1" width="450" height="200" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para HOST INDIVIDUAL -->
     <div id="modalhostindividual" class="modalhostindividual">
-      <div class="modal-content">
-        <span id="close" class="close">&times;</span>
-        <h2 class="titulocadastro">HOST INDIVIDUAL</h2>
-        
-        <button id="btn-enter">Entrar</button>
-        
-      </div>
+        <div class="modal-content-individual">
+            <span id="close2" class="close">&times;</span>
+            <h2 class="titulocadastro">HOST INDIVIDUAL</h2>
+            <h1>Lista Suspensa</h1>
+            <select id="categorias" style="width: 300px;">
+                <option value="">Selecione um equipamento</option>
+            </select>
+            <div id="iframe-container" style="margin-top: 20px;">
+                <iframe id="iframe-display" width="450" height="200" frameborder="0"></iframe>
+            </div>
+        </div>
     </div>
-
 
     <div id="modalnotificacao" class="modalnotificacao">
-      <div class="modal-content">
-        <span id="close" class="close">&larr;</span>
+      <div class="modal-content-notificacao">
+        <span id="close3" class="close-seta">&larr;</span>
+
         <h2 class="titulocadastro">NOTIFICAÇÃO</h2>
-        
-        <button id="btn-enter">Entrar</button>
         
       </div>
     </div>
@@ -309,21 +409,14 @@
 
 
     <div id="modalusuario" class="modalusuario">
-      <div class="modal-content">
-        <span id="close" class="close">&larr;</span>
+      <div class="modal-content-usuario">
+        <span id="close4" class="close-seta">&larr;</span>
+        
         <h2 class="titulocadastro">usuario</h2>
-        
-        <button id="btn-enter">Entrar</button>
-        
+
       </div>
     </div>
 
-    <div class="resultado-busca">
-      <h2>Resultados da Busca</h2>
-      <div id="resultados"></div>
-    </div>
-
-  
     <footer></footer>
     <script src="script.js"></script>
   </body>

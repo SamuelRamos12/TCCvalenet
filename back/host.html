@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="iframe-container" style="margin-top: 20px;">
+        <iframe id="iframe-display" width="450" height="200" frameborder="0"></iframe>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Fazer uma requisição AJAX para obter o link do PHP
+            $.ajax({
+                url: 'host.php',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    if (data.link) {
+                        $('#iframe-display').attr('src', data.link);
+                    } else {
+                        $('#iframe-display').attr('src', ''); // Caso não tenha link, limpa o iframe
+                    }
+                },
+                error: function() {
+                    console.error('Erro ao buscar o link do banco de dados.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

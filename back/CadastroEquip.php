@@ -3,25 +3,32 @@ include 'conexao.php';
 
 // Função para inserir um novo equipamento na tabela equipamentos associado a um cliente
 function inserirEquipamentoCliente($IP, $mac, $tipo, $descrição, $cpf, $conn){
-    $sql = "INSERT INTO Equipamentos(IP, Mac, Tipo, Descrição, Cliente_CPF) VALUES ('$IP', '$mac', '$tipo', '$descrição', '$cpf')";
-    if(mysqli_query($conn, $sql)){
-        return mysqli_insert_id($conn); // Retorna o ID do equipamento inserido.
-    } else{
-        echo "Erro ao cadastrar o equipamento: " . mysqli_error($conn);
+    $sql = "INSERT INTO Equipamentos (IP, Mac, Tipo, descrição, Cliente_CPF) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sssss", $IP, $mac, $tipo, $descrição, $cpf);
+    if ($stmt->execute()) {
+        return $conn->insert_id; // Retorna o ID do equipamento inserido.
+    } else {
+        echo "Erro ao cadastrar o equipamento: " . $stmt->error;
         return false;
     }
 }
 
 // Função para inserir um novo equipamento na tabela equipamentos associado a um funcionário
 function inserirEquipamentoFuncionario($IP, $mac, $tipo, $descrição, $matricula, $conn){
-    $sql = "INSERT INTO Equipamentos(IP, Mac, Tipo, Descrição, Funcionario_Matricula) VALUES ('$IP', '$mac', '$tipo', '$descrição', '$matricula')";
-    if(mysqli_query($conn,      $sql)){
-        return mysqli_insert_id($conn); // Retorna o ID do equipamento inserido.
-    } else{
-        echo "Erro ao cadastrar o equipamento: " . mysqli_error($conn);
+    $sql = "INSERT INTO Equipamentos (IP, Mac, Tipo, descrição, Funcionario_Matricula) VALUES (?, ?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sssss", $IP, $mac, $tipo, $descrição, $matricula);
+    if ($stmt->execute()) {
+        return $conn->insert_id; // Retorna o ID do equipamento inserido.
+    } else {
+        echo "Erro ao cadastrar o equipamento: " . $stmt->error;
         return false;
     }
 }
+
+// Inicializa a variável $IPEquipamento
+$IPEquipamento = false;
 
 // Verificar se o formulário foi enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -44,7 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Se o equipamento foi inserido com sucesso, exibe uma mensagem
     if ($IPEquipamento !== false) {
-        echo "Equipamento cadastrado com sucesso! IP: " . $IP;
+        echo "Equipamento cadastrado com sucesso! IP: " . $IP;      
+    } else {
+        echo "Equipamento não cadastrado!";
     }
 }
 
